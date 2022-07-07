@@ -6,18 +6,42 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:calculator.properties"/>
 
-    <bean id="calcBean"
+    <bean id="additionBean"
           class="my.babicev.firstSpringProject.calculator.Addition">
-        <constructor-arg value="10" index="0" type="java.lang.Double"/>
-        <constructor-arg value="20" index="1" type="java.lang.Double"/>
+        <constructor-arg value="7" index="0" type="java.lang.Double"/>
+        <constructor-arg value="12" index="1" type="java.lang.Double"/>
     </bean>
 
-    <bean id = "calculatorBean"
+    <bean id="subtractionBean"
+          class="my.babicev.firstSpringProject.calculator.Subtraction">
+        <constructor-arg value="7" index="0" type="java.lang.Double"/>
+        <constructor-arg value="12" index="1" type="java.lang.Double"/>
+    </bean>
+
+    <bean id="multiplicationBean"
+          class="my.babicev.firstSpringProject.calculator.Multiplication">
+        <constructor-arg value="7" index="0" type="java.lang.Double"/>
+        <constructor-arg value="12" index="1" type="java.lang.Double"/>
+    </bean>
+
+    <bean id="actionList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="additionBean"/>
+                <ref bean="subtractionBean"/>
+                <ref bean="multiplicationBean"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id = "calculator"
           class="my.babicev.firstSpringProject.calculator.Calculator">
-        <property name="calcAction" ref="calcBean"/>
-        <property name="accuracy" value="1"/>
-        <property name="calcName" value="GENIUS"/>
+        <!--property name="calcAction" ref="calcBean"/-->
+        <property name="accuracy" value="${calculator.accuracy}"/>
+        <property name="calcName" value="${calculator.calcName}"/>
+        <property name="actionList" ref="actionList"/>
     </bean>
 
 </beans>

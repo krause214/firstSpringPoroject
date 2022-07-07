@@ -12,10 +12,12 @@ public class TestSpring {
         );
         //CalcAction calcBean = context.getBean("calcBean", CalcAction.class);
         //Calculator calculator = new Calculator(calcBean);
-        Calculator calculator = context.getBean("calculatorBean", Calculator.class);
-        calculator.printString();
-        System.out.println(calculator.getAccuracy());
-        System.out.println(calculator.getCalcName());
+        Calculator calculator = context.getBean("calculator", Calculator.class);
+        //calculator.printString();
+        //System.out.println(calculator.getAccuracy());
+        //System.out.println(calculator.getCalcName());
+
+        calculator.printActionList();
 
         context.close();
     }
