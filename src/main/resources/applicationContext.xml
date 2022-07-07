@@ -15,7 +15,9 @@
 
     <bean id = "calculatorBean"
           class="my.babicev.firstSpringProject.calculator.Calculator">
-        <constructor-arg ref="calcBean" />
+        <property name="calcAction" ref="calcBean"/>
+        <property name="accuracy" value="1"/>
+        <property name="calcName" value="GENIUS"/>
     </bean>
 
 </beans>

@@ -14,6 +14,8 @@ public class TestSpring {
         //Calculator calculator = new Calculator(calcBean);
         Calculator calculator = context.getBean("calculatorBean", Calculator.class);
         calculator.printString();
+        System.out.println(calculator.getAccuracy());
+        System.out.println(calculator.getCalcName());
 
         context.close();
     }
