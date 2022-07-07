@@ -1,4 +1,4 @@
-package my.babicev.firstSpringPoroject;
+package my.babicev.firstSpringProject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

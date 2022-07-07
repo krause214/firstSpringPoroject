@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="calcBean"
+          class="my.babicev.firstSpringProject.calculator.Addition">
+        <constructor-arg value="10" index="0" type="java.lang.Double"/>
+        <constructor-arg value="20" index="1" type="java.lang.Double"/>
+    </bean>
+
+    <bean id = "calculatorBean"
+          class="my.babicev.firstSpringProject.calculator.Calculator">
+        <constructor-arg ref="calcBean" />
+    </bean>
+
+</beans>
