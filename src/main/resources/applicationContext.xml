@@ -8,6 +8,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder location="classpath:calculator.properties"/>
 
+
     <bean id="additionBean"
           class="my.babicev.firstSpringProject.calculator.Addition">
         <constructor-arg value="7" index="0" type="java.lang.Double"/>
@@ -42,6 +43,19 @@
         <property name="accuracy" value="${calculator.accuracy}"/>
         <property name="calcName" value="${calculator.calcName}"/>
         <property name="actionList" ref="actionList"/>
+    </bean>
+
+<!--  scopes: singleton as default and prototype  -->
+
+    <bean id="calcBeanSingleton"
+          class="my.babicev.firstSpringProject.calculator.Calculator">
+        <property name="calcAction" ref="additionBean"/>
+    </bean>
+
+    <bean id="calcBeanPrototype"
+          class="my.babicev.firstSpringProject.calculator.Calculator"
+          scope="prototype">
+        <property name="calcAction" ref="additionBean"/>
     </bean>
 
 </beans>

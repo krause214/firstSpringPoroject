@@ -12,12 +12,23 @@ public class TestSpring {
         );
         //CalcAction calcBean = context.getBean("calcBean", CalcAction.class);
         //Calculator calculator = new Calculator(calcBean);
-        Calculator calculator = context.getBean("calculator", Calculator.class);
+        //Calculator calculator = context.getBean("calculator", Calculator.class);
         //calculator.printString();
         //System.out.println(calculator.getAccuracy());
         //System.out.println(calculator.getCalcName());
+        //calculator.printActionList();
 
-        calculator.printActionList();
+        //singleton as default
+        Calculator calculatorSingletonOne = context.getBean("calcBeanSingleton", Calculator.class);
+        Calculator calculatorSingletonTwo = context.getBean("calcBeanSingleton", Calculator.class);
+        System.out.println(calculatorSingletonOne.toString());
+        System.out.println(calculatorSingletonTwo.toString());
+
+        //prototype
+        Calculator calculatorPrototypeOne = context.getBean("calcBeanPrototype", Calculator.class);
+        Calculator calculatorPrototypeTwo = context.getBean("calcBeanPrototype", Calculator.class);
+        System.out.println(calculatorPrototypeOne.toString());
+        System.out.println(calculatorPrototypeTwo.toString());
 
         context.close();
     }
