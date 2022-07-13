@@ -5,8 +5,17 @@ public class Multiplication implements CalcAction {
     Double varB = null;
     Double varResult = null;
 
-    public Multiplication(Double varA, Double varB) {
+/*    public Multiplication(Double varA, Double varB) {
         setVars(varA, varB);
+    }*/
+
+    private Multiplication(){};
+    //factory method
+    public static Multiplication getMultiplication(Double varA, Double varB) {
+        Multiplication temp = new Multiplication();
+        temp.varA = varA;
+        temp.varB = varB;
+        return temp;
     }
 
     @Override

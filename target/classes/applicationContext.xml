@@ -28,7 +28,8 @@
     <bean id="multiplicationBean"
           class="my.babicev.firstSpringProject.calculator.Multiplication"
           init-method="doAction"
-          destroy-method="doMyDestroy">
+          destroy-method="doMyDestroy"
+          factory-method="getMultiplication">
         <constructor-arg value="7" index="0" type="java.lang.Double"/>
         <constructor-arg value="12" index="1" type="java.lang.Double"/>
     </bean>
@@ -77,7 +78,8 @@
           class="my.babicev.firstSpringProject.calculator.Multiplication"
           init-method="doAction"
           destroy-method="doMyDestroy"
-          scope="prototype">
+          scope="prototype"
+          factory-method="getMultiplication">
         <constructor-arg value="2" index="0" type="java.lang.Double"/>
         <constructor-arg value="3" index="1" type="java.lang.Double"/>
     </bean>
