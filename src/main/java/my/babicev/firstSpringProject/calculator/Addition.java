@@ -12,6 +12,7 @@ public class Addition implements CalcAction {
     @Override
     public void doAction() {
         varResult = varA + varB;
+        System.out.println("The result of addition is received!");
     }
 
     @Override
@@ -21,13 +22,7 @@ public class Addition implements CalcAction {
 
     @Override
     public String getResult() {
-        try{
-            return varResult.toString();
-        }
-        catch (NullPointerException e){
-            doAction();
-            return varResult.toString();
-        }
+        return varResult.toString();
     }
 
     @Override
@@ -44,5 +39,10 @@ public class Addition implements CalcAction {
     @Override
     public Double getB() {
         return varB;
+    }
+
+    @Override
+    public void doMyDestroy() {
+        System.out.println("Addition object destroyed!");
     }
 }

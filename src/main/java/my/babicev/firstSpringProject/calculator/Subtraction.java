@@ -12,6 +12,7 @@ public class Subtraction implements CalcAction {
     @Override
     public void doAction() {
         varResult = varA - varB;
+        System.out.println("The result of subtraction is received!");
     }
 
     @Override
@@ -21,12 +22,7 @@ public class Subtraction implements CalcAction {
 
     @Override
     public String getResult() throws NullPointerException {
-        try {
-            return varResult.toString();
-        } catch (NullPointerException e){
-            doAction();
-            return varResult.toString();
-        }
+        return varResult.toString();
     }
 
     @Override
@@ -43,5 +39,10 @@ public class Subtraction implements CalcAction {
     @Override
     public Double getB() {
         return varB;
+    }
+
+    @Override
+    public void doMyDestroy() {
+        System.out.println("Subtraction object destroyed!");
     }
 }

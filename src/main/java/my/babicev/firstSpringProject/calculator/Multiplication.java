@@ -12,6 +12,7 @@ public class Multiplication implements CalcAction {
     @Override
     public void doAction() {
         varResult = varA * varB;
+        System.out.println("The result of multiplication is received!");
     }
 
     @Override
@@ -20,14 +21,8 @@ public class Multiplication implements CalcAction {
     }
 
     @Override
-    public String getResult() throws NullPointerException {
-        try{
-            return varResult.toString();
-        }
-        catch (NullPointerException e){
-            doAction();
-            return varResult.toString();
-        }
+    public String getResult() {
+        return varResult.toString();
     }
 
     @Override
@@ -44,5 +39,10 @@ public class Multiplication implements CalcAction {
     @Override
     public Double getB() {
         return varB;
+    }
+
+    @Override
+    public void doMyDestroy() {
+        System.out.println("Multiplication object destroyed!");
     }
 }

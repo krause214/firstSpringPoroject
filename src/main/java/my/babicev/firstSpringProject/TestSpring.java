@@ -3,6 +3,7 @@ package my.babicev.firstSpringProject;
 import my.babicev.firstSpringProject.calculator.Addition;
 import my.babicev.firstSpringProject.calculator.CalcAction;
 import my.babicev.firstSpringProject.calculator.Calculator;
+import my.babicev.firstSpringProject.calculator.Multiplication;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring {
@@ -10,25 +11,20 @@ public class TestSpring {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext.xml"
         );
-        //CalcAction calcBean = context.getBean("calcBean", CalcAction.class);
-        //Calculator calculator = new Calculator(calcBean);
+
         //Calculator calculator = context.getBean("calculator", Calculator.class);
         //calculator.printString();
         //System.out.println(calculator.getAccuracy());
         //System.out.println(calculator.getCalcName());
         //calculator.printActionList();
 
-        //singleton as default
-        Calculator calculatorSingletonOne = context.getBean("calcBeanSingleton", Calculator.class);
-        Calculator calculatorSingletonTwo = context.getBean("calcBeanSingleton", Calculator.class);
-        System.out.println(calculatorSingletonOne.toString());
-        System.out.println(calculatorSingletonTwo.toString());
+        //init-method for singleton only one time
+        Addition multiSingleton = context.getBean("calcInitAndDestroySingleton", Addition.class);
+        Addition multiSingletonTwo = context.getBean("calcInitAndDestroySingleton", Addition.class);
 
-        //prototype
-        Calculator calculatorPrototypeOne = context.getBean("calcBeanPrototype", Calculator.class);
-        Calculator calculatorPrototypeTwo = context.getBean("calcBeanPrototype", Calculator.class);
-        System.out.println(calculatorPrototypeOne.toString());
-        System.out.println(calculatorPrototypeTwo.toString());
+        //destroy-method for prototype is not called
+        Multiplication multiPrototype = context.getBean("calcInitAndDestroyPrototype", Multiplication.class);
+        Multiplication multiPrototypeTwo = context.getBean("calcInitAndDestroyPrototype", Multiplication.class);
 
         context.close();
     }

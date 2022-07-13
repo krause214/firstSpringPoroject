@@ -7,4 +7,5 @@ public interface CalcAction {
     void setVars(Double varA, Double varB);
     Double getA();
     Double getB();
+    void doMyDestroy();
 }
