@@ -8,4 +8,5 @@ public interface CalcAction {
     Double getA();
     Double getB();
     void doMyDestroy();
+    void randomVarsAction();
 }

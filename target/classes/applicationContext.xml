@@ -6,83 +6,9 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
+
     <context:property-placeholder location="classpath:calculator.properties"/>
 
-
-    <bean id="additionBean"
-          class="my.babicev.firstSpringProject.calculator.Addition"
-          init-method="doAction"
-          destroy-method="doMyDestroy">
-        <constructor-arg value="7" index="0" type="java.lang.Double"/>
-        <constructor-arg value="12" index="1" type="java.lang.Double"/>
-    </bean>
-
-    <bean id="subtractionBean"
-          class="my.babicev.firstSpringProject.calculator.Subtraction"
-          init-method="doAction"
-          destroy-method="doMyDestroy">
-        <constructor-arg value="7" index="0" type="java.lang.Double"/>
-        <constructor-arg value="12" index="1" type="java.lang.Double"/>
-    </bean>
-
-    <bean id="multiplicationBean"
-          class="my.babicev.firstSpringProject.calculator.Multiplication"
-          init-method="doAction"
-          destroy-method="doMyDestroy"
-          factory-method="getMultiplication">
-        <constructor-arg value="7" index="0" type="java.lang.Double"/>
-        <constructor-arg value="12" index="1" type="java.lang.Double"/>
-    </bean>
-
-    <bean id="actionListBean" class="java.util.ArrayList">
-        <constructor-arg>
-            <list>
-                <ref bean="additionBean"/>
-                <ref bean="subtractionBean"/>
-                <ref bean="multiplicationBean"/>
-            </list>
-        </constructor-arg>
-    </bean>
-
-    <bean id = "calculator"
-          class="my.babicev.firstSpringProject.calculator.Calculator">
-        <!--property name="calcAction" ref="calcBean"/-->
-        <property name="accuracy" value="${calculator.accuracy}"/>
-        <property name="calcName" value="${calculator.calcName}"/>
-        <property name="actionList" ref="actionListBean"/>
-    </bean>
-
-    <!--  scopes: singleton as default and prototype  -->
-    <bean id="calcBeanSingleton"
-          class="my.babicev.firstSpringProject.calculator.Calculator">
-        <property name="calcAction" ref="additionBean"/>
-    </bean>
-
-    <bean id="calcBeanPrototype"
-          class="my.babicev.firstSpringProject.calculator.Calculator"
-          scope="prototype">
-        <property name="calcAction" ref="additionBean"/>
-    </bean>
-    <!--  __________________________  -->
-
-    <!--init-method and destroy method-->
-    <bean id = "calcInitAndDestroySingleton"
-          class="my.babicev.firstSpringProject.calculator.Addition"
-          init-method="doAction"
-          destroy-method="doMyDestroy">
-        <constructor-arg value="2" index="0" type="java.lang.Double"/>
-        <constructor-arg value="3" index="1" type="java.lang.Double"/>
-    </bean>
-
-    <bean id = "calcInitAndDestroyPrototype"
-          class="my.babicev.firstSpringProject.calculator.Multiplication"
-          init-method="doAction"
-          destroy-method="doMyDestroy"
-          scope="prototype"
-          factory-method="getMultiplication">
-        <constructor-arg value="2" index="0" type="java.lang.Double"/>
-        <constructor-arg value="3" index="1" type="java.lang.Double"/>
-    </bean>
-    <!--  __________________________-->
+    <context:component-scan base-package="my.babicev.firstSpringProject"/>
 
 </beans>

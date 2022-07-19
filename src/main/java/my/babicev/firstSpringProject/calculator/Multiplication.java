@@ -1,21 +1,27 @@
 package my.babicev.firstSpringProject.calculator;
 
+import javafx.util.Pair;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+@Component("multiplicationBean")
 public class Multiplication implements CalcAction {
     Double varA = null;
     Double varB = null;
     Double varResult = null;
+    ArrayList<Pair<Double, Double>> arrayPairsVars = new ArrayList<>();
 
-/*    public Multiplication(Double varA, Double varB) {
+    public Multiplication(@Value("10") Double varA, @Value("13") Double varB) {
         setVars(varA, varB);
-    }*/
-
-    private Multiplication(){};
-    //factory method
-    public static Multiplication getMultiplication(Double varA, Double varB) {
-        Multiplication temp = new Multiplication();
-        temp.varA = varA;
-        temp.varB = varB;
-        return temp;
+        Random random = new Random();
+        for (int i = 0; i < 3; i++){
+            arrayPairsVars.add(new Pair<>(
+                    random.nextDouble() + random.nextInt() % 100,
+                    random.nextDouble() + random.nextInt() % 100));
+        }
     }
 
     @Override
@@ -53,5 +59,10 @@ public class Multiplication implements CalcAction {
     @Override
     public void doMyDestroy() {
         System.out.println("Multiplication object destroyed!");
+    }
+
+    @Override
+    public void randomVarsAction() {
+
     }
 }
