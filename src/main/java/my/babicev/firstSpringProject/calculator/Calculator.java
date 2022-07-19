@@ -2,15 +2,20 @@ package my.babicev.firstSpringProject.calculator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 @Component("calculator")
+@Scope("singleton")
 public class Calculator {
     private CalcAction calcAction;
+    @Value("${calculator.accuracy}")
     private int accuracy;
+    @Value("${calculator.calcName}")
     private String calcName;
     private ArrayList<CalcAction> actionList;
     @Autowired

@@ -10,7 +10,11 @@ public class TestSpring {
         );
 
         Calculator calculator = context.getBean("calculator", Calculator.class);
-        calculator.printString(TypeOfAction.SUBTRACTION);
+        //calculator.printString(TypeOfAction.SUBTRACTION);
+        //calculator.printString(TypeOfAction.ADDITION);
+
+        System.out.println(calculator.getCalcName());
+        System.out.println(calculator.getAccuracy());
         context.close();
     }
 }

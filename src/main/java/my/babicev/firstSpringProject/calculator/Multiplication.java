@@ -4,6 +4,8 @@ import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,6 +18,10 @@ public class Multiplication implements CalcAction {
 
     public Multiplication(@Value("10") Double varA, @Value("13") Double varB) {
         setVars(varA, varB);
+    }
+
+    @PostConstruct
+    void setArrayPairsVars(){
         Random random = new Random();
         for (int i = 0; i < 3; i++){
             arrayPairsVars.add(new Pair<>(
@@ -64,5 +70,10 @@ public class Multiplication implements CalcAction {
     @Override
     public void randomVarsAction() {
 
+    }
+
+    @PreDestroy
+    void preDestroy(){
+        System.out.println("Multiplication destroyed!");
     }
 }
