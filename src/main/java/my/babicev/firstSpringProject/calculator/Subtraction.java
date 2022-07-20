@@ -1,7 +1,6 @@
 package my.babicev.firstSpringProject.calculator;
 
 import javafx.util.Pair;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -9,7 +8,6 @@ import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.Random;
 
-@Component("subtractionBean")
 public class Subtraction implements CalcAction {
     Double varA = null;
     Double varB = null;
@@ -17,7 +15,7 @@ public class Subtraction implements CalcAction {
     ArrayList<Pair<Double, Double>> arrayPairsVars = new ArrayList<Pair<Double, Double>>();
 
 
-    public Subtraction(@Value("10") Double varA, @Value("50") Double varB) {
+    public Subtraction(Double varA, Double varB) {
         setVars(varA, varB);
     }
 
@@ -50,7 +48,6 @@ public class Subtraction implements CalcAction {
             doAction();
             return varResult.toString();
         }
-
     }
 
     @Override

@@ -1,22 +1,19 @@
 package my.babicev.firstSpringProject.calculator;
 
 import javafx.util.Pair;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.Random;
 
-@Component("additionBean")
 public class Addition implements CalcAction {
     Double varA = null;
     Double varB = null;
     Double varResult = null;
     ArrayList<Pair<Double, Double>> arrayPairsVars = new ArrayList<Pair<Double, Double>>();;
 
-    public Addition(@Value("10")Double varA, @Value("12")Double varB) {
+    public Addition(Double varA, Double varB) {
         setVars(varA, varB);
     }
 
@@ -43,7 +40,12 @@ public class Addition implements CalcAction {
 
     @Override
     public String getResult() {
-        return varResult.toString();
+        try {
+            return varResult.toString();
+        } catch (NullPointerException e){
+            doAction();
+            return varResult.toString();
+        }
     }
 
     @Override

@@ -3,14 +3,10 @@ package my.babicev.firstSpringProject.calculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-@Component("calculator")
-@Scope("singleton")
 public class Calculator {
     private CalcAction calcAction;
     @Value("${calculator.accuracy}")
@@ -29,13 +25,9 @@ public class Calculator {
         this.actionList = actionList;
     }
 
-    public Calculator() {
-    }
-
     // IoC
-    @Autowired
-    public Calculator(@Qualifier("subtractionBean") CalcAction calcAction){
-        this.calcAction = calcAction;
+    public Calculator(ArrayList<CalcAction> actionList){
+        this.actionList = actionList;
     }
 
 
@@ -60,6 +52,9 @@ public class Calculator {
     }
 
     public void printString(){
+        Random random = new Random();
+        int rand = Math.abs(random.nextInt() % actionList.size());
+        setCalcAction(actionList.get(rand));
         System.out.println(calcAction.getA() + " " + calcAction.getSymbol()
             + " " + calcAction.getB() + " = " + calcAction.getResult());
     }
